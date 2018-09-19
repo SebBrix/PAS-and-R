@@ -44,7 +44,7 @@ signfct((-1):3)
 
 
 #Exercises:
-# 1)
+# Produkt at indgangene i en vektor
 prod1 <- function(y){
   sum <- 1
   a <- length(y)
@@ -84,3 +84,25 @@ return(f)
 
 fibo(30)
 
+#' I) Consider the built-in dataset `cars`
+#'     a) Make the design matrix X for a simple linear regression for `cars` (`dist` as a function of `speed`).
+X = cbind(c(rep(1,nrow(cars))),cars$speed)
+y = (cars$dist)
+
+#'     b) Estimate beta. Plot the data and the estimated line in the same figure. 
+#'     (hint: the function `abline` is useful for plotting the line)
+B <- solve(t(X) %*% X, t(X) %*% y)
+B
+#'     c) Estimate sigma^2.
+sigma <- (t(y-X%*%B)%*%(y-X%*%B))/(nrow(cars)-(ncol(cars))
+sigma
+plot(cars$speed, cars$dist)
+                                   
+abline(B[1],B[2])
+                                   
+sigmaianden <- (t(y-X%*%B)%*%(y-X%*%B))/(nrow(cars)-(ncol(cars)))
+sigmaianden       
+
+#' II) Maybe a second order polynomial is better at capturing the relation between speed and distance?
+#' Redo exercise I with a second order polynomial. (Hint: `curve` may be useful)
+j <- B[1] + B[2]*X
